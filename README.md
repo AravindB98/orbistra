@@ -58,6 +58,32 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for design details and honest
 
 TLE + SGP4 is a *screening-grade* tool: position errors are km-scale and grow with propagation time, and TLEs carry no covariance. Collision probabilities here use a configurable assumed uncertainty and are **not** operational-grade risk numbers. Real conjunction assessment uses owner/operator ephemerides and CDMs — supporting those is on the roadmap.
 
+## Contributing
+
+Contributions are welcome — the [roadmap](docs/ROADMAP.md) has plenty of meaty problems (maneuver detection, CDM ingestion, Foster's-method Pc, PyO3 bindings).
+
+1. **⭐ Star this repo** to follow progress, and **fork it** to your account.
+2. Clone your fork and create a feature branch:
+   ```bash
+   git clone https://github.com/<your-username>/orbistra.git
+   cd orbistra
+   git checkout -b feat/my-change
+   ```
+3. Build and make your changes:
+   ```bash
+   cargo build --workspace && cargo test --workspace
+   ```
+4. Before committing, make sure the CI gates pass locally:
+   ```bash
+   cargo fmt --all
+   cargo clippy --workspace --all-targets -- -D warnings
+   cargo test --workspace
+   ```
+5. Add tests for new behavior — screening changes should include an engineered TLE fixture demonstrating the case (see the tests in `orbistra-sentry/src/lib.rs`).
+6. Push your branch and open a pull request with a clear description of the problem and approach.
+
+For larger changes, open an issue first so we can discuss the design. See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
+
 ## License
 
 MIT OR Apache-2.0, at your option. TLE data courtesy of [CelesTrak](https://celestrak.org).
