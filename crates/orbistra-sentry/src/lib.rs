@@ -102,7 +102,8 @@ pub fn screen(prop: &Propagator, cfg: &ScreeningConfig) -> Vec<Conjunction> {
     let candidate_events: Vec<(usize, usize, i64)> = (0..n_steps)
         .into_par_iter()
         .flat_map(|k| {
-            let t = cfg.start + Duration::milliseconds((k as f64 * cfg.coarse_step_s * 1000.0) as i64);
+            let t =
+                cfg.start + Duration::milliseconds((k as f64 * cfg.coarse_step_s * 1000.0) as i64);
             let states = prop.snapshot(t);
             let cell = capture_km;
             let mut grid: HashMap<(i64, i64, i64), Vec<usize>> = HashMap::new();
@@ -119,9 +120,19 @@ pub fn screen(prop: &Propagator, cfg: &ScreeningConfig) -> Vec<Conjunction> {
                 // Compare within this cell and against forward neighbor cells
                 // (half the 26-neighborhood, to avoid double counting).
                 let neighbors: [(i64, i64, i64); 13] = [
-                    (1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1),
-                    (0, 1, 1), (1, 1, 1), (1, -1, 0), (1, 0, -1), (0, 1, -1),
-                    (1, 1, -1), (1, -1, 1), (1, -1, -1),
+                    (1, 0, 0),
+                    (0, 1, 0),
+                    (0, 0, 1),
+                    (1, 1, 0),
+                    (1, 0, 1),
+                    (0, 1, 1),
+                    (1, 1, 1),
+                    (1, -1, 0),
+                    (1, 0, -1),
+                    (0, 1, -1),
+                    (1, 1, -1),
+                    (1, -1, 1),
+                    (1, -1, -1),
                 ];
                 for (mi, &sa) in members.iter().enumerate() {
                     for &sb in &members[mi + 1..] {
@@ -130,7 +141,16 @@ pub fn screen(prop: &Propagator, cfg: &ScreeningConfig) -> Vec<Conjunction> {
                     for &(dx, dy, dz) in &neighbors {
                         if let Some(other) = grid.get(&(cx + dx, cy + dy, cz + dz)) {
                             for &sb in other {
-                                check_pair(&states, sa, sb, cfg, &bands, band_margin_km, k, &mut found);
+                                check_pair(
+                                    &states,
+                                    sa,
+                                    sb,
+                                    cfg,
+                                    &bands,
+                                    band_margin_km,
+                                    k,
+                                    &mut found,
+                                );
                             }
                         }
                     }
@@ -159,7 +179,9 @@ pub fn screen(prop: &Propagator, cfg: &ScreeningConfig) -> Vec<Conjunction> {
             let mut windows: Vec<(DateTime<Utc>, DateTime<Utc>)> = Vec::new();
             for t in times {
                 match windows.last_mut() {
-                    Some((_, end)) if (t - *end).num_seconds() as f64 <= cfg.coarse_step_s * 1.5 => {
+                    Some((_, end))
+                        if (t - *end).num_seconds() as f64 <= cfg.coarse_step_s * 1.5 =>
+                    {
                         *end = t;
                     }
                     _ => windows.push((t, t)),
@@ -217,9 +239,8 @@ fn check_pair(
     } else {
         0.0
     };
-    let dmin2 = (r[0] + v[0] * tau).powi(2)
-        + (r[1] + v[1] * tau).powi(2)
-        + (r[2] + v[2] * tau).powi(2);
+    let dmin2 =
+        (r[0] + v[0] * tau).powi(2) + (r[1] + v[1] * tau).powi(2) + (r[2] + v[2] * tau).powi(2);
     // Curvature pad: differential gravity over Δt ≈ ½·Δg·Δt² (≲ few km at 60 s).
     let reach = cfg.threshold_km + CURVATURE_PAD_KM;
     if dmin2 < reach * reach {

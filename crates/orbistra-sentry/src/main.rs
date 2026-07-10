@@ -28,7 +28,8 @@ fn parse_args() -> Result<Args> {
     let mut it = std::env::args().skip(1);
     while let Some(flag) = it.next() {
         let mut val = |name: &str| -> Result<String> {
-            it.next().with_context(|| format!("missing value for {name}"))
+            it.next()
+                .with_context(|| format!("missing value for {name}"))
         };
         match flag.as_str() {
             "--tle" => args.tle_path = val("--tle")?,

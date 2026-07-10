@@ -27,9 +27,7 @@ pub fn gmst_rad(t: DateTime<Utc>) -> f64 {
     let jd = t.timestamp_millis() as f64 / 86_400_000.0 + 2_440_587.5;
     let d = jd - 2_451_545.0;
     let tc = d / 36_525.0;
-    let gmst_deg = 280.460_618_37
-        + 360.985_647_366_29 * d
-        + 0.000_387_933 * tc * tc
+    let gmst_deg = 280.460_618_37 + 360.985_647_366_29 * d + 0.000_387_933 * tc * tc
         - tc * tc * tc / 38_710_000.0;
     gmst_deg.to_radians().rem_euclid(2.0 * std::f64::consts::PI)
 }

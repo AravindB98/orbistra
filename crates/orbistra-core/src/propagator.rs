@@ -103,8 +103,14 @@ impl Propagator {
             .enumerate()
             .filter_map(|(i, e)| {
                 let dt_min = (t.naive_utc() - e.epoch).num_milliseconds() as f64 / 60_000.0;
-                let p = e.constants.propagate(sgp4::MinutesSinceEpoch(dt_min)).ok()?;
-                if !(p.position[0].is_finite() && p.position[1].is_finite() && p.position[2].is_finite()) {
+                let p = e
+                    .constants
+                    .propagate(sgp4::MinutesSinceEpoch(dt_min))
+                    .ok()?;
+                if !(p.position[0].is_finite()
+                    && p.position[1].is_finite()
+                    && p.position[2].is_finite())
+                {
                     return None;
                 }
                 Some((i, p.position, p.velocity))
@@ -114,7 +120,9 @@ impl Propagator {
 
     /// Propagate a single object by internal index.
     pub fn state_at(&self, index: usize, t: DateTime<Utc>) -> Option<State> {
-        self.entries.get(index).and_then(|e| Self::propagate_entry(e, t))
+        self.entries
+            .get(index)
+            .and_then(|e| Self::propagate_entry(e, t))
     }
 
     /// Position/velocity only (no identity allocation) — fast path for
@@ -122,7 +130,10 @@ impl Propagator {
     pub fn pos_vel_at(&self, index: usize, t: DateTime<Utc>) -> Option<([f64; 3], [f64; 3])> {
         let e = self.entries.get(index)?;
         let dt_min = (t.naive_utc() - e.epoch).num_milliseconds() as f64 / 60_000.0;
-        let p = e.constants.propagate(sgp4::MinutesSinceEpoch(dt_min)).ok()?;
+        let p = e
+            .constants
+            .propagate(sgp4::MinutesSinceEpoch(dt_min))
+            .ok()?;
         if !(p.position[0].is_finite() && p.position[1].is_finite() && p.position[2].is_finite()) {
             return None;
         }
