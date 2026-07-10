@@ -1,0 +1,6 @@
+/target
+**/*.rs.bk
+node_modules/
+.DS_Store
+*.log
+data/demo_conjunctions.json

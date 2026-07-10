@@ -1,0 +1,27 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/orbistra-core",
+    "crates/orbistra-sentry",
+    "crates/orbistra-server",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/aravindbalaji/orbistra"
+authors = ["Aravind Balaji <aravindo2011@gmail.com>"]
+
+[workspace.dependencies]
+sgp4 = "2"
+chrono = { version = "0.4", features = ["serde"] }
+rayon = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+anyhow = "1"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1

@@ -1,0 +1,15 @@
+[package]
+name = "orbistra-core"
+description = "High-performance orbit propagation engine: TLE catalog handling, parallel SGP4 propagation, and coordinate frame transforms"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+sgp4 = { workspace = true }
+chrono = { workspace = true }
+rayon = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }

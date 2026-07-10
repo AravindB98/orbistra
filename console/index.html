@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORBISTRA · Space Operations Console</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="logo">◉</span>
+      <h1>ORBISTRA</h1>
+      <span class="tagline">space operations console</span>
+    </div>
+    <div id="stats">
+      <span id="stat-objects">— objects</span>
+      <span id="stat-source">—</span>
+      <span id="stat-time">—</span>
+    </div>
+  </header>
+
+  <main>
+    <div id="globe-container"></div>
+
+    <aside id="panel">
+      <h2>Conjunction Watch <span id="screen-meta"></span></h2>
+      <div id="screening-status">screening…</div>
+      <ul id="conjunction-list"></ul>
+    </aside>
+  </main>
+
+  <footer>
+    <span>ORBISTRA · open-source space situational awareness · TLE data © CelesTrak</span>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

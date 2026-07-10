@@ -1,0 +1,20 @@
+[package]
+name = "orbistra-server"
+description = "ORBISTRA API server: live TLE ingestion, catalog state API, conjunction feed, and console hosting"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+orbistra-core = { path = "../orbistra-core" }
+orbistra-sentry = { path = "../orbistra-sentry" }
+axum = "0.7"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal"] }
+tower-http = { version = "0.6", features = ["fs", "cors"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls"] }
+chrono = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
