@@ -87,3 +87,19 @@ For larger changes, open an issue first so we can discuss the design. See [CONTR
 ## License
 
 MIT OR Apache-2.0, at your option. TLE data courtesy of [CelesTrak](https://celestrak.org).
+
+---
+
+## 🧒 Explain Like I'm 5
+
+Air-traffic control for space: thousands of satellites and pieces of junk orbit Earth, and Orbistra predicts where every object is heading, checks the whole catalog for possible collisions, and estimates the risk — fast, because it's written in Rust and works in parallel.
+
+## 🧰 Tech Stack
+
+Rust · parallel SGP4 orbit propagation · full-catalog conjunction screening · collision-risk estimation · 3D visualization
+
+## 🌍 Real-Life Applications
+
+- Satellite operators screening their fleet against the debris catalog
+- Space-situational-awareness research without commercial license costs
+- Educational visualization of the orbital environment
