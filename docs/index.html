@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>orbistra — Open-source space operations</title>
+<meta name="description" content="Open-source space operations — parallel SGP4 propagation, full-catalog conjunction screening, and collision risk.">
+<style>
+:root{--accent:#5c9dff;--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.65}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{padding:72px 0 48px;text-align:center;background:radial-gradient(ellipse at top,color-mix(in srgb,var(--accent) 18%,transparent),transparent 65%)}
+h1{font-size:2.6rem;margin-bottom:8px}
+.emoji{font-size:3.2rem;display:block;margin-bottom:12px}
+.tagline{color:var(--muted);font-size:1.15rem;max-width:640px;margin:0 auto 24px}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:10px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-ghost{border:1px solid var(--border);color:var(--text)}
+section{padding:40px 0;border-top:1px solid var(--border)}
+h2{font-size:1.5rem;margin-bottom:16px;color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.chip{display:inline-block;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 14px;margin:4px;font-size:.88rem}
+ul.apps{list-style:none}ul.apps li{padding:8px 0 8px 28px;position:relative}
+ul.apps li:before{content:"✦";position:absolute;left:4px;color:var(--accent)}
+#demo{margin-top:8px}
+.demo-hint{color:var(--muted);font-size:.9rem;margin-bottom:14px}
+button.demo-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-weight:600;cursor:pointer;font-size:.92rem;margin:4px 6px 4px 0}
+button.demo-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+input[type=range]{accent-color:var(--accent)}
+canvas{background:#0a0e14;border:1px solid var(--border);border-radius:8px;max-width:100%}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:.85rem}
+footer{padding:36px 0;text-align:center;color:var(--muted);font-size:.9rem}
+footer a{color:var(--accent);text-decoration:none}
+.star-cta{background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 25%,var(--card)),var(--card));border:1px solid var(--accent);border-radius:12px;padding:24px;text-align:center;margin-top:8px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<span class="emoji">🛰️</span>
+<h1>orbistra</h1>
+<p class="tagline">Open-source space operations — parallel SGP4 propagation, full-catalog conjunction screening, and collision risk.</p>
+<div class="btns">
+<a class="btn btn-primary" href="https://github.com/AravindB98/orbistra">View on GitHub</a>
+<a class="btn btn-ghost" href="#demo-sec">▶ Try the Demo</a>
+</div>
+</div></header>
+<div class="wrap">
+<section><h2>🧒 What is this? (Plain English)</h2><div class="card"><p>Air-traffic control for space: thousands of satellites and pieces of junk orbit Earth, and Orbistra predicts where every object is heading, checks the whole catalog for possible collisions, and estimates the risk — fast, because it's written in Rust and works in parallel.</p></div></section>
+<section><h2>✨ Key Features</h2><div class="grid"><div class="card"><strong>Parallel SGP4</strong><p style="color:var(--muted);margin-top:6px">Propagate the entire satellite catalog fast, in Rust.</p></div><div class="card"><strong>Conjunction screening</strong><p style="color:var(--muted);margin-top:6px">Check every object pair for dangerous close approaches.</p></div><div class="card"><strong>Collision risk</strong><p style="color:var(--muted);margin-top:6px">Probability estimates for flagged conjunctions.</p></div><div class="card"><strong>3D visualization</strong><p style="color:var(--muted);margin-top:6px">See the orbital environment, not just numbers.</p></div></div></section>
+<section id="demo-sec"><h2>🕹️ Interactive Demo</h2>
+<p class="demo-hint">A live orbital picture: satellites circle Earth and the screener flags close approaches in red. <em>(Illustrative in-browser simulation of what the real system does.)</em></p>
+<div class="card" id="demo"><canvas id="ob-c" width="880" height="420"></canvas>
+<div style="margin-top:8px" class="mono">Speed: <input type="range" id="ob-s" min="1" max="10" value="4"> <span id="ob-count" style="color:#f85149"></span></div></div></section>
+<section><h2>🧰 Tech Stack</h2><div><span class="chip">Rust</span><span class="chip">parallel SGP4 orbit propagation</span><span class="chip">full-catalog conjunction screening</span><span class="chip">collision-risk estimation</span><span class="chip">3D visualization</span></div></section>
+<section><h2>🌍 Real-Life Applications</h2><ul class="apps"><li>Satellite operators screening their fleet against the debris catalog</li><li>Space-situational-awareness research without commercial license costs</li><li>Educational visualization of the orbital environment</li></ul></section>
+<section><h2>⭐ Support the Project</h2><div class="star-cta">
+<p style="margin-bottom:14px">If this project is useful or interesting to you, <strong>starring ⭐ and forking 🍴 the repo</strong> is the best way to support it and help others find it.</p>
+<div class="btns">
+<a class="btn btn-primary" href="https://github.com/AravindB98/orbistra/stargazers">⭐ Star</a>
+<a class="btn btn-ghost" href="https://github.com/AravindB98/orbistra/fork">🍴 Fork</a>
+<a class="btn btn-ghost" href="https://github.com/AravindB98/orbistra/issues">💬 Contribute</a>
+</div></div></section>
+</div>
+<footer>Built by <a href="https://github.com/AravindB98">Aravind Balaji</a> · <a href="https://aravindbalaji.com">aravindbalaji.com</a> · <a href="https://medium.com/@aravindbalaji25">Medium</a></footer>
+<script>
+
+const oc=document.getElementById('ob-c'),octx=oc.getContext('2d');
+const SATS=[...Array(28)].map((_,i)=>({r:70+(i*11)%140,a:(i*2.39),w:(0.008+((i*7)%10)*0.0012)*((i%2)?1:-1)}));
+let conj=0;
+function obStep(){const sp=+document.getElementById('ob-s').value;
+octx.fillStyle='#0a0e14';octx.fillRect(0,0,880,420);
+octx.fillStyle='#1f6feb';octx.beginPath();octx.arc(440,210,28,0,7);octx.fill();
+octx.fillStyle='#3fb950';octx.font='11px monospace';octx.fillText('EARTH',420,214);
+const pos=SATS.map(s=>{s.a+=s.w*sp;return[440+s.r*Math.cos(s.a),210+s.r*Math.sin(s.a)*0.55];});
+octx.strokeStyle='#20262e';SATS.forEach(s=>{octx.beginPath();octx.ellipse(440,210,s.r,s.r*0.55,0,0,7);octx.stroke();});
+let flags=0;
+for(let i=0;i<pos.length;i++)for(let j=i+1;j<pos.length;j++){const dx=pos[i][0]-pos[j][0],dy=pos[i][1]-pos[j][1];
+ if(dx*dx+dy*dy<140){flags++;octx.strokeStyle='#f85149';octx.lineWidth=1.5;octx.beginPath();octx.moveTo(...pos[i]);octx.lineTo(...pos[j]);octx.stroke();
+ octx.fillStyle='#f85149';octx.fillText('⚠ conjunction',(pos[i][0]+pos[j][0])/2+8,(pos[i][1]+pos[j][1])/2);}}
+pos.forEach(p=>{octx.fillStyle='#e6edf3';octx.fillRect(p[0]-2,p[1]-2,4,4);});
+if(flags)conj+=flags;document.getElementById('ob-count').textContent=' conjunction events screened: '+conj;
+requestAnimationFrame(obStep);}
+obStep();
+
+</script>
+</body>
+</html>
